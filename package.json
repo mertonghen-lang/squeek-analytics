@@ -1,0 +1,28 @@
+{
+  "name": "squeek-analytics",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Unofficial community analytics for the Squeek Chain public work record.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @squeek-analytics/site dev",
+    "build": "pnpm --filter @squeek-analytics/client build && pnpm --filter @squeek-analytics/site build",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "eslint ."
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.46.2"
+  }
+}

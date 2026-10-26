@@ -1,0 +1,22 @@
+{
+  "name": "@squeek-analytics/client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Typed read-only client for the public Squeek Chain HTTP API.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "files": ["src", "dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3",
+    "vitest": "^3.2.4"
+  }
+}

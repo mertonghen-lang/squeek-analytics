@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Literata", ui-serif, Georgia, serif;
+  --color-paper: var(--paper);
+  --color-raised: var(--raised);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-sage: var(--sage);
+  --color-coral: var(--coral);
+  --color-sky: var(--sky);
+}
+
+:root {
+  color-scheme: dark;
+  --paper: #14120e;
+  --raised: #221e18;
+  --sunken: #0c0b09;
+  --ink: #f6f1e7;
+  --muted: #b3a898;
+  --line: #3d362c;
+  --amber: #f0a202;
+  --amber-soft: #ffd27a;
+  --sage: #8fbf9f;
+  --coral: #e07a5f;
+  --sky: #8eb8c9;
+  --stripe: rgba(179, 168, 152, 0.35);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --paper: #f4efe6;
+  --raised: #fffaf3;
+  --sunken: #e7e0d4;
+  --ink: #211c16;
+  --muted: #5c5348;
+  --line: #ddcfc0;
+  --amber: #a56b08;
+  --amber-soft: #f0a202;
+  --sage: #1f7a4d;
+  --coral: #b42318;
+  --sky: #1d5f78;
+  --stripe: rgba(92, 83, 72, 0.28);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, color-mix(in srgb, var(--amber) 16%, transparent), transparent 60%),
+    var(--paper);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--amber) 45%, transparent);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    var(--stripe) 3px,
+    var(--stripe) 4px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
