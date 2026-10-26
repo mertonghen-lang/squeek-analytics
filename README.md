@@ -28,7 +28,9 @@ pnpm install
 pnpm dev
 ```
 
-The dev server listens on [http://127.0.0.1:47221](http://127.0.0.1:47221). In development the page calls `/squeek-api`, and the dev server forwards that to `https://api.squeekchain.com`. If Cloudflare challenges Node's fetch, the server falls back to a small Python helper (`apps/site/scripts/upstream.py`) that needs `curl_cffi` (`pip install curl_cffi`). A normal browser can call the API directly and does not need that helper.
+The dev server listens on [http://127.0.0.1:47221](http://127.0.0.1:47221). In development the page calls same-origin `/squeek-api`, and the Vite server forwards that to `https://api.squeekchain.com` with Node's `fetch`. A production build does not use that proxy: the browser calls the API directly.
+
+**Optional, dev only.** Some networks answer Node's `fetch` with a Cloudflare challenge. If that happens, the dev server tries `apps/site/scripts/upstream.py`, which needs Python 3 and [`curl_cffi`](https://pypi.org/project/curl-cffi/) (`pip install curl_cffi`). You do not need that package to install, test, typecheck, or build, and a normal browser never uses it. If the helper is missing, the dev proxy returns the upstream error and the static site is unaffected.
 
 ```sh
 pnpm lint

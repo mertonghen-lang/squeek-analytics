@@ -25,6 +25,7 @@ function pickHeaders(headers: Headers): Record<string, string> {
   return kept;
 }
 
+/** Optional dev fallback. Requires python3 and curl_cffi. Not part of the production bundle. */
 function pythonFetch(url: string, ifNoneMatch?: string): Promise<UpstreamResult> {
   return new Promise((resolve, reject) => {
     const args = [upstreamScript, url];

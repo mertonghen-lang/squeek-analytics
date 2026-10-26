@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Fetch the public Squeek API with a browser TLS fingerprint.
+"""Optional dev-only fetch of the public Squeek API with a browser TLS fingerprint.
 
-The dev server uses this only after Node's fetch receives a Cloudflare challenge.
+Not used by tests, the production build, or a browser. The Vite dev server calls
+this only after Node's fetch receives a Cloudflare challenge. Requires curl_cffi.
 It refuses any host other than api.squeekchain.com.
 """
 
