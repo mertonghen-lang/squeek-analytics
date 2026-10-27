@@ -39,7 +39,7 @@ pnpm test
 pnpm build
 ```
 
-`pnpm build` writes a static site to `apps/site/dist` with base `/`. Set `VITE_BASE=/squeek-analytics/` for the GitHub project-pages build. The production bundle calls `https://api.squeekchain.com` from the browser (CORS is open; no API key). `dist/404.html` is a copy of `index.html`, so a host that serves it for unknown paths keeps client routes such as `/blocks` working. `apps/site/public/_redirects` and `apps/site/public/vercel.json` are copied into that folder for other static hosts.
+`pnpm build` writes a static site to `apps/site/dist` with base `/`, then copies that folder to `dist` at the repository root. Set `VITE_BASE=/squeek-analytics/` for the GitHub project-pages build. The production bundle calls `https://api.squeekchain.com` from the browser (CORS is open; no API key). `dist/404.html` is a copy of `index.html`, so a host that serves it for unknown paths keeps client routes such as `/blocks` working. `apps/site/public/_redirects` and `apps/site/public/vercel.json` are copied into that folder for other static hosts.
 
 Override the API origin with `VITE_API_BASE`. Override the Sepolia HTTP endpoint with `VITE_SEPOLIA_RPC` (default `https://ethereum-sepolia-rpc.publicnode.com`). The page only reads logs when `/v1/core` events do not already connect back to round 0.
 
@@ -51,7 +51,7 @@ Pushing to `main` runs typecheck and tests, builds `apps/site/dist` with `VITE_B
 
 ## Deploy to Vercel
 
-Import this repository and leave the root directory as the repository root. The Hobby plan needs no environment variables, secrets, or analytics. The root [`vercel.json`](vercel.json) installs with pnpm, runs `pnpm build`, publishes `apps/site/dist`, and rewrites every route to `/index.html`. That build uses base `/`, so the site is served from the domain root. The browser calls `https://api.squeekchain.com` directly.
+Import this repository and leave the root directory as the repository root. The Hobby plan needs no environment variables, secrets, or analytics. The root [`vercel.json`](vercel.json) installs with pnpm, runs `pnpm build`, publishes the root `dist` folder (the same files as `apps/site/dist`), and rewrites every route to `/index.html`. That build uses base `/`, so the site is served from the domain root. The browser calls `https://api.squeekchain.com` directly.
 
 ## Data sources
 
