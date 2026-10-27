@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "pnpm --filter @squeek-analytics/site dev",
-    "build": "pnpm --filter @squeek-analytics/client build && pnpm --filter @squeek-analytics/site build",
+    "build": "pnpm --filter @squeek-analytics/client build && pnpm --filter @squeek-analytics/site build && node scripts/copy-site-dist.mjs",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "eslint ."
