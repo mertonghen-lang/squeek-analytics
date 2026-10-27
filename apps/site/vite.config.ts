@@ -9,6 +9,8 @@ import { defineConfig, type Plugin } from "vite";
 const root = path.dirname(fileURLToPath(import.meta.url));
 const upstreamScript = path.join(root, "scripts", "upstream.py");
 const API_ORIGIN = "https://api.squeekchain.com";
+/** GitHub project Pages serves this repo at /squeek-analytics/. Dev stays at /. */
+const PAGES_BASE = "/squeek-analytics/";
 
 interface UpstreamResult {
   status: number;
@@ -120,7 +122,8 @@ function squeekDevProxy(): Plugin {
   };
 }
 
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
+  base: command === "build" || mode === "production" ? PAGES_BASE : "/",
   plugins: [react(), tailwindcss(), squeekDevProxy()],
   server: {
     host: "0.0.0.0",
@@ -132,4 +135,4 @@ export default defineConfig({
     port: 47221,
     strictPort: true,
   },
-});
+}));

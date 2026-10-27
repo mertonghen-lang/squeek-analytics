@@ -7,9 +7,11 @@ import { SettlementLag } from "./views/SettlementLag.tsx";
 import { Sources } from "./views/Sources.tsx";
 import { WorkHistory } from "./views/WorkHistory.tsx";
 
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <SqueekProvider>
         <Shell>
           <Routes>
