@@ -43,6 +43,8 @@ jobs:
         run: pnpm test
 
       - name: Build
+        env:
+          VITE_BASE: /squeek-analytics/
         run: pnpm build
 
       - name: Setup Pages
