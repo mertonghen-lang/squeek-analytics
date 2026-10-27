@@ -39,9 +39,15 @@ pnpm test
 pnpm build
 ```
 
-`pnpm build` writes a static site to `apps/site/dist`. The production bundle calls `https://api.squeekchain.com` from the browser (CORS is open; no API key). Host that folder anywhere that serves `index.html` for client routes. `dist/404.html`, `_redirects`, and `vercel.json` are included for common static hosts.
+`pnpm build` writes a static site to `apps/site/dist` with the GitHub project-pages base `/squeek-analytics/`. The production bundle calls `https://api.squeekchain.com` from the browser (CORS is open; no API key). `dist/404.html` is a copy of `index.html`, so a host that serves it for unknown paths keeps client routes such as `/blocks` working. `_redirects` and `vercel.json` are the same fallback for other static hosts.
 
 Override the API origin with `VITE_API_BASE`. Override the Sepolia HTTP endpoint with `VITE_SEPOLIA_RPC` (default `https://ethereum-sepolia-rpc.publicnode.com`). The page only reads logs when `/v1/core` events do not already connect back to round 0.
+
+## Published site
+
+The live site is [https://mertonghen-lang.github.io/squeek-analytics/](https://mertonghen-lang.github.io/squeek-analytics/).
+
+Pushing to `main` runs typecheck and tests, builds `apps/site/dist`, and deploys that folder to GitHub Pages. Pull requests run the same checks and do not deploy. The workflow uses the public API only, so it needs no secrets. Pages has to be set once to **GitHub Actions** as the source (Settings → Pages → Build and deployment → Source).
 
 ## Data sources
 
