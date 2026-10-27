@@ -8,13 +8,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-amber text-[#1c1304] hover:bg-amber-soft",
-        outline: "border border-line bg-transparent text-ink hover:bg-raised",
+        default: "bg-amber text-[#1c1404] hover:bg-amber-soft",
+        outline: "border border-line bg-sunken/40 text-ink hover:border-amber/50 hover:bg-raised",
         ghost: "bg-transparent text-ink hover:bg-raised",
       },
       size: {
-        default: "h-9 px-4",
-        sm: "h-8 px-3 text-xs",
+        default: "h-10 px-4",
+        sm: "h-9 px-3 text-xs",
       },
     },
     defaultVariants: {
