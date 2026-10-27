@@ -174,7 +174,7 @@ function Gauge({ angle, stale, label }: { angle: number; stale: boolean; label: 
       <path d="M28 110 A72 72 0 1 1 172 110" fill="none" stroke={stale ? "var(--muted)" : "var(--amber)"} strokeWidth="12" strokeLinecap="round" strokeDasharray="188" strokeDashoffset="70" />
       <line x1="100" y1="110" x2={x2} y2={y2} stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" />
       <circle cx="100" cy="110" r="5" fill="var(--amber)" />
-      <text x="100" y="146" textAnchor="middle" fill="var(--ink)" fontSize="16" fontFamily="Literata, serif">
+      <text x="100" y="146" textAnchor="middle" fill="var(--ink)" fontSize="16" fontFamily="Instrument Serif, serif">
         {label}
       </text>
     </svg>

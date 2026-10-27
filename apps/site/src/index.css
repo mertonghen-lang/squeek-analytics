@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Literata", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --color-paper: var(--paper);
   --color-raised: var(--raised);
   --color-sunken: var(--sunken);
@@ -18,18 +18,20 @@
 
 :root {
   color-scheme: dark;
-  --paper: #14120e;
-  --raised: #221e18;
-  --sunken: #0c0b09;
-  --ink: #f6f1e7;
-  --muted: #b3a898;
-  --line: #3d362c;
-  --amber: #f0a202;
-  --amber-soft: #ffd27a;
-  --sage: #8fbf9f;
-  --coral: #e07a5f;
-  --sky: #8eb8c9;
-  --stripe: rgba(179, 168, 152, 0.35);
+  --paper: #090d16;
+  --raised: #141b2e;
+  --sunken: #0c111c;
+  --ink: #f4f6fb;
+  --muted: #b7c0d4;
+  --line: rgba(196, 208, 232, 0.18);
+  --amber: #f0b429;
+  --amber-soft: #ffe0a3;
+  --sage: #7ddec8;
+  --coral: #ff8f80;
+  --sky: #9ec5ff;
+  --stripe: rgba(183, 192, 212, 0.35);
+  --glow: rgba(240, 180, 41, 0.22);
+  --card-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
@@ -37,26 +39,42 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --paper: #f4efe6;
-  --raised: #fffaf3;
-  --sunken: #e7e0d4;
-  --ink: #211c16;
-  --muted: #5c5348;
-  --line: #ddcfc0;
-  --amber: #a56b08;
-  --amber-soft: #f0a202;
-  --sage: #1f7a4d;
-  --coral: #b42318;
-  --sky: #1d5f78;
-  --stripe: rgba(92, 83, 72, 0.28);
+  --paper: #f5f3ee;
+  --raised: #fffcf7;
+  --sunken: #e7e2d8;
+  --ink: #17191f;
+  --muted: #4c5364;
+  --line: rgba(23, 25, 31, 0.14);
+  --amber: #8a5a00;
+  --amber-soft: #c4841a;
+  --sage: #0d6b52;
+  --coral: #a32018;
+  --sky: #1d4e8f;
+  --stripe: rgba(76, 83, 100, 0.28);
+  --glow: rgba(138, 90, 0, 0.12);
+  --card-shadow: 0 14px 36px rgba(42, 32, 12, 0.08);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(1200px 500px at 10% -10%, color-mix(in srgb, var(--amber) 16%, transparent), transparent 60%),
+    radial-gradient(980px 460px at 0% -10%, var(--glow), transparent 58%),
+    radial-gradient(720px 380px at 100% 0%, color-mix(in srgb, var(--sky) 18%, transparent), transparent 52%),
     var(--paper);
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black, transparent 72%);
+  opacity: 0.45;
 }
 
 #root {
@@ -65,6 +83,18 @@ body {
 
 ::selection {
   background: color-mix(in srgb, var(--amber) 45%, transparent);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+h1,
+h2 {
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 .tabular {
@@ -81,11 +111,45 @@ body {
   );
 }
 
+.surface {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, white 6%, transparent), transparent 42%),
+    color-mix(in srgb, var(--raised) 92%, transparent);
+  border: 1px solid var(--line);
+  box-shadow: var(--card-shadow), inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.surface-hover {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.surface-hover:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--amber) 45%, var(--line));
+}
+
+tbody tr {
+  transition: background-color 160ms ease;
+}
+
+tbody tr:hover {
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation: none !important;
     transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .surface-hover:hover {
+    transform: none;
   }
 }
